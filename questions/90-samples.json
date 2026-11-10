@@ -1,0 +1,16 @@
+[
+  {
+    "id": "demo-s01",
+    "question": "This lecture has only a sample question so far. What does that make it on the site?",
+    "options": [
+      "Coming soon, but its sample question can still be played",
+      "Hidden until its own question file is added",
+      "A normal lecture, like the others",
+      "Locked for everyone except admins"
+    ],
+    "answer": 0,
+    "explanation": "A lecture counts as ready once it has questions of its own. Until then it is marked Coming soon, and sample questions (from the samplesFile in course.json) are still playable.",
+    "source": "README, Course config",
+    "topic": "Lecture 3: Coming soon example"
+  }
+]

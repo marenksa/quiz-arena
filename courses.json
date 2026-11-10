@@ -1,0 +1,11 @@
+{
+  "about": "Course sites that have opted in to the shared course list. Add yours with a pull request; see the README.",
+  "courses": [
+    {
+      "code": "IN5020",
+      "name": "Distributed Systems",
+      "university": "University of Oslo",
+      "url": "https://quiz-arena-ruddy.vercel.app"
+    }
+  ]
+}

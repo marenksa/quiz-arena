@@ -1,0 +1,54 @@
+[
+  {
+    "id": "demo-l02-q01",
+    "question": "What does git commit do?",
+    "options": [
+      "Records the staged changes as a new snapshot in the local repository",
+      "Uploads your latest changes to the shared repository on GitHub",
+      "Downloads new changes from the remote and merges them",
+      "Marks the changed files so they are included in the next push"
+    ],
+    "answer": 0,
+    "explanation": "A commit is local. git push uploads commits, git pull downloads and merges, and git add stages files for the next commit.",
+    "source": "Lecture 2, slide 5; Pro Git book p. 28",
+    "topic": "Lecture 2: Version control with Git"
+  },
+  {
+    "id": "demo-l02-q02",
+    "question": "You run these commands. Which branch are you on afterwards?",
+    "code": "git switch main\ngit switch -c feature\ngit switch main\ngit merge feature",
+    "options": ["main", "feature", "A detached HEAD", "Both main and feature"],
+    "answer": 0,
+    "explanation": "git switch -c creates and switches to feature, the third command switches back to main, and git merge doesn't change the current branch.",
+    "source": "Lecture 2, slide 9",
+    "topic": "Lecture 2: Version control with Git"
+  },
+  {
+    "id": "demo-l02-q03",
+    "question": "Two people changed the same line of a file on different branches. What happens when one branch is merged into the other?",
+    "options": [
+      "Git stops with a merge conflict that someone has to resolve",
+      "Git keeps the change from the branch that was committed last",
+      "Git keeps both lines, one after the other, and commits",
+      "Git refuses to merge until one of the branches is deleted"
+    ],
+    "answer": 0,
+    "explanation": "Git can't know which change is right, so it marks the conflict in the file and waits for you to fix it and commit.",
+    "source": "Lecture 2, slide 11; Pro Git book pp. 75–77",
+    "topic": "Lecture 2: Version control with Git"
+  },
+  {
+    "id": "demo-l02-q04",
+    "question": "What is the main reason to keep a .gitignore file in a project?",
+    "options": [
+      "To stop files like build output or secrets from being committed",
+      "To list the people who are not allowed to push to the repository",
+      "To make Git skip files when other people clone the repository",
+      "To hide the commit history of selected files"
+    ],
+    "answer": 0,
+    "explanation": ".gitignore lists untracked files Git should leave alone. Access control is set on the hosting service, and files that were committed earlier still show up in clones and history.",
+    "source": "Assignment 1 p. 2; Pro Git book p. 32",
+    "topic": "Lecture 2: Version control with Git"
+  }
+]

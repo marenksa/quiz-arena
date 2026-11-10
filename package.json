@@ -1,0 +1,16 @@
+{
+  "name": "quiz-arena",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "check": "node scripts/check-questions.mjs",
+    "build": "node scripts/check-questions.mjs"
+  },
+  "dependencies": {
+    "postgres": "^3.4.5"
+  }
+}

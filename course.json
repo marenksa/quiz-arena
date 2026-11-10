@@ -1,0 +1,27 @@
+{
+  "appName": "Quiz Arena",
+  "code": "DEMO101",
+  "name": "Demo course",
+  "tagline": "Multiple-choice practice for the exam",
+  "lectures": [
+    "Lecture 1: How the web works",
+    "Lecture 2: Version control with Git",
+    "Lecture 3: Coming soon example"
+  ],
+  "samplesFile": "90-samples.json",
+  "sourceInfo": {
+    "pages": "the lecture notes for Lecture {lecture}",
+    "pagesNoLecture": "the lecture notes for this lecture",
+    "books": [
+      { "match": "pro git", "text": "Chacon & Straub: Pro Git, 2nd ed." }
+    ],
+    "documents": [
+      { "match": "assignment\\s*(\\d+)", "name": "Assignment $1", "doc": "the Assignment $1 description" }
+    ]
+  },
+  "directory": {
+    "enabled": true,
+    "url": "https://raw.githubusercontent.com/marenksa/quiz-arena/main/courses.json",
+    "hide": []
+  }
+}

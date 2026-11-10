@@ -1,0 +1,69 @@
+[
+  {
+    "id": "demo-l01-q01",
+    "question": "What does DNS do when you type a web address into the browser?",
+    "options": [
+      "Translates the domain name into the server's IP address",
+      "Encrypts the connection between the browser and the server",
+      "Stores a copy of the page so it loads faster next time",
+      "Picks the shortest route for packets across the Internet"
+    ],
+    "answer": 0,
+    "explanation": "DNS (the Domain Name System) maps names such as example.org to IP addresses. Encryption is TLS's job, caching is done by the browser or a CDN, and routing is done by routers.",
+    "source": "Lecture 1, slide 4; p. 2",
+    "topic": "Lecture 1: How the web works"
+  },
+  {
+    "id": "demo-l01-q02",
+    "question": "Which HTTP status code means the requested page was not found?",
+    "options": ["404", "200", "301", "500"],
+    "answer": 0,
+    "explanation": "404 Not Found. 200 means OK, 301 is a permanent redirect and 500 is an internal server error.",
+    "source": "Lecture 1, slide 7",
+    "topic": "Lecture 1: How the web works"
+  },
+  {
+    "id": "demo-l01-q03",
+    "question": "A browser sends this request. What is the server asked to do?",
+    "code": "GET /courses/index.html HTTP/1.1\nHost: example.org",
+    "options": [
+      "Return the file /courses/index.html from example.org",
+      "Store a new file called index.html on example.org",
+      "Delete the page /courses/index.html on example.org",
+      "Look up the IP address of example.org"
+    ],
+    "answer": 0,
+    "explanation": "GET asks for a resource; the Host header names the site. Storing would be PUT or POST, deleting would be DELETE, and name lookup happens in DNS before the request is sent.",
+    "source": "Lecture 1, slide 8",
+    "topic": "Lecture 1: How the web works"
+  },
+  {
+    "id": "demo-l01-q04",
+    "question": "Why does HTTPS protect a password sent in a login form on public Wi-Fi?",
+    "options": [
+      "The connection is encrypted, so others on the network can't read it",
+      "The password is hashed by the browser before it is sent",
+      "Public Wi-Fi networks block plain HTTP traffic by default",
+      "The server only accepts passwords from known devices"
+    ],
+    "answer": 0,
+    "explanation": "HTTPS is HTTP over TLS: the traffic is encrypted between browser and server. Browsers don't hash form passwords, and Wi-Fi networks don't block plain HTTP.",
+    "source": "Lecture 1 notes pp. 5–6",
+    "topic": "Lecture 1: How the web works",
+    "coverage": "pensum"
+  },
+  {
+    "id": "demo-l01-q05",
+    "question": "What makes HTTP a stateless protocol?",
+    "options": [
+      "Each request is handled on its own, without memory of earlier ones",
+      "The server never stores any files between two requests",
+      "Requests can't contain cookies or other headers",
+      "Every request must open a new TCP connection"
+    ],
+    "answer": 0,
+    "explanation": "The protocol itself keeps no state between requests; sites add state with cookies or tokens. Servers still store files, and connections can be reused (keep-alive).",
+    "source": "Lecture 1, slide 9; p. 4",
+    "topic": "Lecture 1: How the web works"
+  }
+]
