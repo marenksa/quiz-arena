@@ -122,6 +122,11 @@ async function api(path, { method = 'GET', body } = {}) {
   return data;
 }
 
+// Text with `backticks` gets inline code formatting (names from code, such as `accept`).
+function rt(text) {
+  return String(text ?? '').split(/`([^`\n]+)`/).map((part, i) => (i % 2 ? h('code', { class: 'icode' }, part) : part)).filter((p) => p !== '');
+}
+
 function h(tag, attrs, ...children) {
   const el = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs || {})) {
@@ -517,7 +522,7 @@ function noticeCard(notices) {
       notices.map((n) =>
         h('li', {},
           h('b', {}, n.status === 'fixed' ? 'Fixed. ' : 'Reviewed, kept as is. '),
-          n.question ? h('span', { class: 'notice-q' }, `“${n.question}”`) : 'A question that has since been removed.',
+          n.question ? h('span', { class: 'notice-q' }, '“', rt(n.question), '”') : 'A question that has since been removed.',
           n.reply ? h('span', { class: 'notice-reply' }, n.reply) : null,
         ),
       ),
@@ -640,7 +645,7 @@ function askQuestion(q, mode, { progressText, progress, footer, scope = 'all', b
     const opts = q.options.map((o, idx) =>
       h('button', { class: 'option', type: 'button', onclick: () => choose(idx) },
         h('span', { class: 'key', 'aria-hidden': 'true' }, LETTERS[idx]),
-        h('span', {}, o.text),
+        h('span', {}, rt(o.text)),
       ),
     );
 
@@ -675,7 +680,7 @@ function askQuestion(q, mode, { progressText, progress, footer, scope = 'all', b
             ? `Correct! ${result.points ? `+${result.points} ${result.points === 1 ? 'point' : 'points'}` : ''}`
             : `Not quite. The answer is ${LETTERS[right]}.`,
         ),
-        result.explanation ? h('p', { class: 'explain' }, result.explanation) : null,
+        result.explanation ? h('p', { class: 'explain' }, rt(result.explanation)) : null,
         result.source ? sourceLine(result.source, q.topic) : null,
       );
       feedback.hidden = false;
@@ -710,7 +715,7 @@ function askQuestion(q, mode, { progressText, progress, footer, scope = 'all', b
           h('div', { class: 'q-tags' }, q.pensum ? pensumTag() : null, flag.btn),
         ),
         flag.panel,
-        h('h2', { class: 'qtext' }, q.question),
+        h('h2', { class: 'qtext' }, rt(q.question)),
         q.code ? h('pre', { class: 'qcode' }, q.code) : null,
         h('div', { class: 'options' }, opts),
         feedback,
@@ -863,7 +868,7 @@ function questionList(items, topic, withStats) {
     items.map((q) =>
       h('li', {},
         h('div', { class: 'ql-main' },
-          h('p', { class: 'ql-q' }, q.question),
+          h('p', { class: 'ql-q' }, rt(q.question)),
           topic == null || q.pensum
             ? h('p', { class: 'ql-meta' }, [topic == null ? q.topic : null, q.pensum ? 'Pensum only' : null].filter(Boolean).join(' · '))
             : null,
@@ -1176,14 +1181,14 @@ async function correctView(token) {
                 h('div', { class: 'q-tags' }, q.pensum ? pensumTag() : null, flag.btn),
               ),
               flag.panel,
-              h('p', { class: 'q' }, q.question),
+              h('p', { class: 'q' }, rt(q.question)),
               q.code ? h('pre', { class: 'qcode' }, q.code) : null,
-              h('p', { class: 'a' }, '✓ ', q.options[q.answer]),
-              q.explanation ? h('p', { class: 'explain' }, q.explanation) : null,
+              h('p', { class: 'a' }, '✓ ', rt(q.options[q.answer])),
+              q.explanation ? h('p', { class: 'explain' }, rt(q.explanation)) : null,
               q.source ? sourceLine(q.source, q.topic) : null,
               h('details', {},
                 h('summary', {}, 'All options'),
-                h('ol', { type: 'A' }, q.options.map((o, i) => h('li', { class: i === q.answer ? 'is-answer' : '' }, o))),
+                h('ol', { type: 'A' }, q.options.map((o, i) => h('li', { class: i === q.answer ? 'is-answer' : '' }, rt(o)))),
               ),
             );
           })
@@ -1252,12 +1257,12 @@ async function flagsView(token, filter) {
         h('div', { class: 'topic' }, q.topic || 'Removed question'),
         h('span', { class: 'flag-count' }, icon('flag'), q.open ? plural(q.open, 'open flag') : 'resolved'),
       ),
-      h('p', { class: 'q' }, q.question || `(${q.questionId} is no longer in the question bank)`),
+      h('p', { class: 'q' }, q.question ? rt(q.question) : `(${q.questionId} is no longer in the question bank)`),
       q.code ? h('pre', { class: 'qcode' }, q.code) : null,
       q.inBank
-        ? h('ol', { type: 'A', class: 'flag-opts' }, q.options.map((o, i) => h('li', { class: i === q.answer ? 'is-answer' : '' }, o, i === q.answer ? ' ✓' : '')))
+        ? h('ol', { type: 'A', class: 'flag-opts' }, q.options.map((o, i) => h('li', { class: i === q.answer ? 'is-answer' : '' }, rt(o), i === q.answer ? ' ✓' : '')))
         : null,
-      q.explanation ? h('p', { class: 'explain' }, q.explanation) : null,
+      q.explanation ? h('p', { class: 'explain' }, rt(q.explanation)) : null,
       q.source ? sourceLine(q.source, q.topic) : null,
       Object.keys(reasons).length
         ? h('p', { class: 'flag-reasons' }, Object.entries(reasons).map(([r, n]) => `${r}${n > 1 ? ` ×${n}` : ''}`).join(' · '))

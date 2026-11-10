@@ -201,6 +201,11 @@ footer { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1r
   font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem; line-height: 1.5; white-space: pre; tab-size: 4;
 }
 .qa .qcode { margin: 0 0 0.6rem; }
+.icode {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.86em; font-weight: 400; padding: 0.08em 0.32em;
+  border-radius: 4px; background: var(--surface-2); border: 1px solid var(--line); white-space: nowrap;
+}
+[data-theme="paper"] .icode { border: 0; background: none; padding: 0; color: var(--accent); font-size: 0.9em; }
 .info { display: inline-grid; place-items: center; vertical-align: -0.15em; padding: 0; margin-left: 0.1rem; width: 1.1rem; height: 1.1rem; border: 0; background: none; color: var(--muted); cursor: pointer; border-radius: 50%; }
 .info .ico { width: 0.95rem; height: 0.95rem; }
 .info:hover, .info:focus-visible, .source.open .info { color: var(--accent); }

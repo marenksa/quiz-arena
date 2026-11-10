@@ -135,6 +135,8 @@ example `questions/07-lecture.json`.
   Pensum-only questions get a tag, can be skipped, and can be switched off on the front page.
   See the coverage rule below.
 - `code` (optional): code or a table, shown in a monospace block. Use `\n` for new lines.
+- Inline code: wrap names from code in backticks, such as `` `accept` ``, in the question, options
+  or explanation, and they are shown in a code font.
 - `shuffle: false` (optional) keeps the options in order, for "All of the above" or ranges.
 
 New questions join anyone's unfinished round; deleted questions drop out of rounds, mistakes and
